@@ -27,6 +27,10 @@ const App = () => {
     setEmployees([...employees, employee])
   }
 
+  const DeleteEmployee = id => {
+    setEmployees(employees.filter( employee => employee.id !== id))
+  }
+
     return (
       <div className="container">
         <h1>Employee List</h1>
@@ -37,7 +41,7 @@ const App = () => {
           </div>
           <div className="flex-large">
             <h2>Current Employees</h2>
-            <EmployeeList employees={employees} />
+            <EmployeeList DeleteEmployee={DeleteEmployee} employees={employees} />
           </div>
         </div>
       </div>

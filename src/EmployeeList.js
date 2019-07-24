@@ -9,7 +9,7 @@ const EmployeeList = props =>  (
             <tr>
             <th>Name</th>
             <th>Role</th>
-            <th>Email</th>
+            {/* <th>Email</th> */}
             <th>Actions</th>
             </tr>
         </thead>
@@ -19,10 +19,11 @@ const EmployeeList = props =>  (
                 <tr key={employee.id}>
                     <td>{employee.name}</td>
                     <td>{employee.role}</td>
-                    <td>{employee.email}</td>
+                    {/* <td>{employee.email}</td> */}
                     <td>
                     <button className="button muted-button">Edit</button>
-                    <button className="button muted-button">Delete</button>
+                    <button onClick={() => props.DeleteEmployee(employee.id)} className="button muted-button">
+                        Delete</button>
                     </td>
                 </tr>
                 ))
