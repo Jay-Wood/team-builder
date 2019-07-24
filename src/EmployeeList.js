@@ -21,9 +21,12 @@ const EmployeeList = props =>  (
                     <td>{employee.role}</td>
                     {/* <td>{employee.email}</td> */}
                     <td>
-                    <button className="button muted-button">Edit</button>
+                    <button onClick={ () => props.EditEmp(employee)}  className="button muted-button">
+                        Edit
+                    </button>
                     <button onClick={() => props.DeleteEmployee(employee.id)} className="button muted-button">
-                        Delete</button>
+                        Delete
+                    </button>
                     </td>
                 </tr>
                 ))

@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import EmployeeList from "./EmployeeList.js";
 import AddEmployeeForm from "./Form.js"
+import EditUserForm from "./EditUserForm.js"
 // import { Link } from "react-router-dom";
 
 const App = () => {
@@ -31,6 +32,24 @@ const App = () => {
     setEmployees(employees.filter( employee => employee.id !== id))
   }
 
+  const [editMode, setEditMode] = useState(false)
+  const initFormState = {}
+  const [currentEmployee, setCurrentEmployee] = useState(initFormState)
+
+  const EditEmp = emp => {
+    setEditMode(true)
+    setCurrentEmployee( {
+      id: emp.id,
+      name: emp.name,
+      role: emp.role
+    })
+  }
+
+  const UpdateEmp = (id, updatedEmp) => {
+    setEditMode(false)
+    setEmployees(employees.map(emp => (emp.id === id ? updatedEmp : emp)))   
+  }  
+
     return (
       <div className="container">
         <h1>Employee List</h1>
@@ -41,7 +60,13 @@ const App = () => {
           </div>
           <div className="flex-large">
             <h2>Current Employees</h2>
-            <EmployeeList DeleteEmployee={DeleteEmployee} employees={employees} />
+            <EmployeeList 
+              UpdateEmp={UpdateEmp} 
+              EditEmp={EditEmp} 
+              DeleteEmployee={DeleteEmployee} 
+              setCurrentEmployee={setCurrentEmployee}
+              setEditMode={setEditMode}
+              employees={employees} />
           </div>
         </div>
       </div>

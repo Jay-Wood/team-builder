@@ -1,13 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react';
 
-const AddEmployeeForm = props => {
+const EditUserForm = props => {
 
-    const initFormState = {}
-    const [employee, setEmployee] = useState(initFormState)
+    const [employee, setEmployee] = useState(props.currentEmployee)
 
     const handleInputChange = event => {
         const {name, value} = event.target        
-        console.log("name in handle", name, "value", value)
         setEmployee({ ...employee, [name]: value })    
     }
 
@@ -15,18 +13,19 @@ const AddEmployeeForm = props => {
         <form
             onSubmit={ event => {
                 event.preventDefault()
-                return props.AddEmployee(employee)
-                //reset form: 
-                setEmployee(initFormState)
+                return props.UpdateEmployee(employee.id, employee)
+                
             }}
         >
           <label>Name</label>
           <input type="text" name="name" value={employee.name} onChange={handleInputChange} />
           <label>Role</label>
           <input type="text" name="role" value={employee.role} onChange={handleInputChange} />
-          <button>Add new employee</button>
+          <button>Update employee</button>
+          <button onClick={() => props.setEditMode(false)} className="button muted-button" >
+            Cancel
+          </button>
         </form>
     )
 }
-
-export default AddEmployeeForm; 
+export default EditUserForm
