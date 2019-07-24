@@ -55,26 +55,39 @@ const App = () => {
         <h1>Employee List</h1>
         <div className="flex-row">
           <div className="flex-large">
-            <h2>Add Employee</h2>
-            <AddEmployeeForm AddEmployee={AddEmployee} />
-          </div>
-          <div className="flex-large">
-            <h2>Current Employees</h2>
-            <EmployeeList 
-              UpdateEmp={UpdateEmp} 
-              EditEmp={EditEmp} 
-              DeleteEmployee={DeleteEmployee} 
-              setCurrentEmployee={setCurrentEmployee}
-              setEditMode={setEditMode}
-              employees={employees} />
-          </div>
+           {editMode ? (
+            <div>
+              <h2>Edit user</h2>
+              <EditUserForm 
+                editMode={editMode}
+                setEditMode={setEditMode}
+                currentEmployee={currentEmployee}
+                UpdateEmp={UpdateEmp}
+              />
+            </div>
+          ) : ( 
+            <div> 
+              <h2>Add Employee</h2>
+              <AddEmployeeForm AddEmployee={AddEmployee} />
+            </div>
+          )}
+        </div>
+
+        <div className="flex-large">
+          <h2>Current Employees</h2>
+          <EmployeeList 
+            UpdateEmp={UpdateEmp} 
+            EditEmp={EditEmp} 
+            DeleteEmployee={DeleteEmployee} 
+            setCurrentEmployee={setCurrentEmployee}
+            setEditMode={setEditMode}
+            employees={employees} />
+        </div>
+
         </div>
       </div>
     )
 }
-
-
-
 
 export default App;
 
