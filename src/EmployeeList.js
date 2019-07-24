@@ -8,7 +8,7 @@ const EmployeeList = props =>  (
         <thead>
             <tr>
             <th>Name</th>
-            <th>Title</th>
+            <th>Role</th>
             <th>Email</th>
             <th>Actions</th>
             </tr>
@@ -18,7 +18,7 @@ const EmployeeList = props =>  (
                 props.employees.map(employee => (
                 <tr key={employee.id}>
                     <td>{employee.name}</td>
-                    <td>{employee.title}</td>
+                    <td>{employee.role}</td>
                     <td>{employee.email}</td>
                     <td>
                     <button className="button muted-button">Edit</button>
